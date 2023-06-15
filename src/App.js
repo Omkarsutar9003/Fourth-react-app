@@ -12,13 +12,16 @@ function App() {
   );
 };
 
-function Demo(props)
+function Demo({username,place})
 {
-   console.log("inside function", props);
+   //console.log("inside function", props);
   return (
     <>
-      <h1>{props.username}</h1>
-      <h1>{props.place}</h1>
+      <h1>
+        {username}  {place}
+       
+      </h1>
+      
     </>
   );
 }
