@@ -1,48 +1,37 @@
-
+import { useState } from "react";
 
 function App() {
-  
   return (
     <>
-      <h1>Loop Demo</h1>
-      <Listdemo/>
-    </>
-  )
-}
-
-function Demo({username,place})
-{
-    //console.log("inside function", props);
-  return (
-    <>
-      <h1>
-        {username} {place}
-       
-      </h1>
-      
+      <h1>Stateful List</h1>
+      <ListDemo />
     </>
   );
 }
 
-function Listdemo()
-{
-  let data = "Shri Swami Samarth";
-  let list = [];
+function ListDemo() {
+  let [list, setList] = useState(["delhi"]);
 
-  for (let i = 0; i < 6; i++)
-  {
-    list.push("Shri Swami Samarth");
-  }
-  
-   return (
-     <>
-        
-       <h1>{data}</h1>
-       {list.forEach((item) => item)}
-       {list.map((item)=>list)}
+  let addItemAction = () => {
+    let inputRef = document.querySelector("#id1");
+    let inputValue = inputRef.value;
 
-     </>
-   );
-  
-};
+    let newList = [...list, inputValue];
+    setList(newList);
+
+    inputRef.value = "";
+  };
+
+  return (
+    <>
+      <input type="text" id="id1" placeholder="Enter user input..." />
+      <input type="button" value="Add New Item" onClick={addItemAction} />
+
+      {list.map((item) => (
+        <h1>{item}</h1>
+      ))}
+    </>
+  );
+}
+
 export default App;
