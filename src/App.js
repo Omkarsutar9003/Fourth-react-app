@@ -4,21 +4,19 @@ function App() {
   
   return (
     <>
-      <h1>Props Demo</h1>
-      <Demo username="Omkar" place="Kolhapur" />
-      <Demo username="Nitesh" place="Sangli" />
-      <Demo username="Amit" place="Kolhapur" />
+      <h1>Loop Demo</h1>
+      <Listdemo/>
     </>
-  );
-};
+  )
+}
 
 function Demo({username,place})
 {
-   //console.log("inside function", props);
+    //console.log("inside function", props);
   return (
     <>
       <h1>
-        {username}  {place}
+        {username} {place}
        
       </h1>
       
@@ -26,4 +24,25 @@ function Demo({username,place})
   );
 }
 
+function Listdemo()
+{
+  let data = "Shri Swami Samarth";
+  let list = [];
+
+  for (let i = 0; i < 6; i++)
+  {
+    list.push("Shri Swami Samarth");
+  }
+  
+   return (
+     <>
+        
+       <h1>{data}</h1>
+       {list.forEach((item) => item)}
+       {list.map((item)=>list)}
+
+     </>
+   );
+  
+};
 export default App;
