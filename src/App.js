@@ -3,41 +3,63 @@ import { useRef, useState } from "react";
 function App() {
   return (
     <>
-      <h1>Stateful List</h1>
+      <h1>My project</h1>
       <ListDemo />
     </>
   );
 }
 
 function ListDemo() {
+
   let inputref = useRef();
-
   let [list, setList] = useState(["delhi"]);
-
-  let addItemAction = () => {
-    // let inputRef = document.querySelector("#id1");
-    // let inputValue = inputRef.value;
-
-    // let newList = [...list, inputValue];
-    // setList(newList);
-
-    // inputRef.value = "";
-     
-   let inputvalue = inputref.current.value;
-    let newList = [...list,
-      inputvalue];
-    setList(newList);
+  
+  let additem=() => {
+    
+    let inputvalue = inputref.current.value;
+    let newlist = [inputvalue, ...list];
+    setList(newlist);
     inputref.current.value = "";
-
 
   };
 
   return (
     <>
-      <input type="text" ref={inputref} placeholder="Enter user input..." />
-      <input type="button" value="Add New Item" onClick={addItemAction} />
+      <div
+        className="row justify-content-center align-items-center"
+        style={{ height: "95vh" }}
+      >
+        <div className="col-sm-12 col-md-6">
+          <h1>Registration App</h1>
+          <input
+            className="form-control"
+            type="text"
+            placeholder="user name"
+            ref={inputref}
+          />
 
-      {list.map((item) => (<h1>{item}</h1>))}
+          <input
+            className="form-control"
+            type="text"
+            placeholder="password"
+            ref={inputref}
+          />
+
+          <input
+            className="form-control"
+            type="text"
+            placeholder="Email"
+            ref={inputref}
+          />
+
+          <input
+            type="button"
+            value="Login"
+            className="w-100"
+            onClick={additem}
+          />
+        </div>
+      </div>
     </>
   );
 }
