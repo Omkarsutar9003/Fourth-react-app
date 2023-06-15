@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 function App() {
   return (
@@ -10,26 +10,34 @@ function App() {
 }
 
 function ListDemo() {
+  let inputref = useRef();
+
   let [list, setList] = useState(["delhi"]);
 
   let addItemAction = () => {
-    let inputRef = document.querySelector("#id1");
-    let inputValue = inputRef.value;
+    // let inputRef = document.querySelector("#id1");
+    // let inputValue = inputRef.value;
 
-    let newList = [...list, inputValue];
+    // let newList = [...list, inputValue];
+    // setList(newList);
+
+    // inputRef.value = "";
+     
+   let inputvalue = inputref.current.value;
+    let newList = [...list,
+      inputvalue];
     setList(newList);
+    inputref.current.value = "";
 
-    inputRef.value = "";
+
   };
 
   return (
     <>
-      <input type="text" id="id1" placeholder="Enter user input..." />
+      <input type="text" ref={inputref} placeholder="Enter user input..." />
       <input type="button" value="Add New Item" onClick={addItemAction} />
 
-      {list.map((item) => (
-        <h1>{item}</h1>
-      ))}
+      {list.map((item) => (<h1>{item}</h1>))}
     </>
   );
 }
